@@ -11,5 +11,19 @@ solver_per_type = {
     "tsp": lambda: "edu.kit.provideq.toolbox.tsp.solvers.LkhTspSolver"
 }
 
-solve("vrp", "<some_vrp_input>", "edu.kit.provideq.toolbox.vrp.solvers.ClusterAndSolveVrpSolver", solver_per_type)
+settings_per_solver_id = {
+    "edu.kit.provideq.toolbox.vrp.clusterer.KmeansClusterer": lambda: [
+        {
+            "name": "Cluster Number",
+            "type": "INTEGER",
+            "required": False,
+            "description": "",
+            "min": 1,
+            "max": 1000,
+            "value": 3,
+        }
+    ],
+}
+
+solve("vrp", "<some_vrp_input>", "edu.kit.provideq.toolbox.vrp.solvers.ClusterAndSolveVrpSolver", solver_per_type, settings_per_solver_id)
 ```
