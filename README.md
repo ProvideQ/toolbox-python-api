@@ -1,7 +1,7 @@
-## Example API Usage Script
+## Toolbox Python API
 
-This script can be called to automatically invoke the [ProvideQ API](https://github.com/ProvideQ/toolbox-server).
-You use this to solve any kind of problem with a set of pre-defined solvers.
+This python script can be used as library to automatically invoke the [ProvideQ API](https://github.com/ProvideQ/toolbox-server).
+You can use this to solve any kind of problem with a set of pre-defined solvers.
 
 ### Example
 ```python
