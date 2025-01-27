@@ -61,7 +61,7 @@ class ProvideQApi:
             start_problem = self.get(f"/problems/{problem_type}/{starting_problem_id}")
             if start_problem['state'] == "SOLVED":
                 print("Problem solved", start_problem)
-                break
+                return start_problem['solution']['solutionData']
 
             for (problem_id, type) in problems:
                 problem = self.get(f"/problems/{type}/{problem_id}")
