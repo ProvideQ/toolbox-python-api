@@ -2,9 +2,10 @@ import requests
 import json
 
 class ProvideQApi:
-    def __init__(self, base_url, print_requests=False):
+    def __init__(self, base_url, print_requests=False, print_debug=False):
         self.base_url = base_url
         self.print_requests = print_requests
+        self.print_debug = print_debug
 
     def get(self, endpoint):
         if self.print_requests:
@@ -60,20 +61,24 @@ class ProvideQApi:
         while True:
             start_problem = self.get(f"/problems/{problem_type}/{starting_problem_id}")
             if start_problem['state'] == "SOLVED":
-                print("Problem solved", start_problem)
+                if self.print_debug:
+                    print("Problem solved", start_problem)
                 return start_problem['solution']
 
             for (problem_id, type) in problems:
                 problem = self.get(f"/problems/{type}/{problem_id}")
 
-                print(problem)
+                if self.print_debug:
+                    print("Processing", problem)
                 if problem['state'] == "NEEDS_CONFIGURATION":
                     solver_id = solver_per_type[problem['typeId']]()
-                    print("Start and set solver for", type, problem_id, "to", solver_id)
+                    if self.print_debug:
+                        print("Start and set solver for", type, problem_id, "to", solver_id)
                     self.patch(f"/problems/{type}/{problem['id']}", {"state": "SOLVING", "solverId": solver_id, "solverSettings": self.get_setting(settings_per_solver_id, solver_id)})
 
                 if problem['state'] == "READY_TO_SOLVE":
-                    print("Start", type, problem_id)
+                    if self.print_debug:
+                        print("Start", type, problem_id)
                     self.patch(f"/problems/{type}/{problem['id']}", {"state": "SOLVING"})
 
                 if problem['state'] == "SOLVING":
@@ -83,5 +88,6 @@ class ProvideQApi:
                             sub_type = subproblem['subRoutine']['typeId']
                             for sub in subproblem['subProblemIds']:
                                 if not any(p[0] == sub for p in problems):
-                                    print("Add new subproblem to list", sub_type, sub)
+                                    if self.print_debug:
+                                        print("Add new subproblem to list", sub_type, sub)
                                     problems.append((sub, sub_type))
