@@ -55,6 +55,9 @@ def test_vrp_with_kmeans_and_lkh():
     api.solve("vrp", vrp_input, "edu.kit.provideq.toolbox.vrp.solvers.ClusterAndSolveVrpSolver", solver_per_type, settings_per_solver_id)
 
 def test_vrp_with_kmeans_and_qrisp_grover():
+    # Read file content at 
+    vrp_input = 
+
     vrp_input = """
     NAME : CMT1
     COMMENT : 524.61
