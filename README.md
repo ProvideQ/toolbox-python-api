@@ -1,7 +1,8 @@
 ## Toolbox Python API
 
 This python script can be used as library to automatically invoke the [ProvideQ API](https://github.com/ProvideQ/toolbox-server).
-You can use this to solve any kind of problem with a set of pre-defined solvers.
+You can use this to solve any kind of problem with a set of pre-defined solvers.\
+For more information how to use the API, see the ProvideQ [wiki](https://github.com/ProvideQ/toolbox-server/wiki/How-to-use).
 
 ### Example
 ```python
