@@ -1,3 +1,5 @@
+**Important Notice: The Python API will overgo drastical change within the next month as part of our initiative of designing a Domain Specific Language for Meta-Solver Strategies**.
+
 ## Toolbox Python API
 
 This python script can be used as library to automatically invoke the [ProvideQ API](https://github.com/ProvideQ/toolbox-server).
